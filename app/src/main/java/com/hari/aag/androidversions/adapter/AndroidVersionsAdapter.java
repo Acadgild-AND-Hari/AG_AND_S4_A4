@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.hari.aag.androidversions.R;
 
@@ -23,6 +24,15 @@ public class AndroidVersionsAdapter extends BaseAdapter {
             R.drawable.ice_cream_sandwich, R.drawable.jelly_bean,
             R.drawable.kitkat, R.drawable.lollipop,
             R.drawable.marshmallow, R.drawable.nougat
+    };
+    private final String[] androidVersionNames = {
+            "Alpha", "Beta",
+            "Cupcake", "Donut",
+            "Eclair", "Froyo",
+            "Gingerbread", "Honeycomb",
+            "IceCreamSandwich", "JellyBean",
+            "KitKat", "Lollipop",
+            "Marshmallow", "Nougat"
     };
 
     public AndroidVersionsAdapter(Context context){
@@ -54,16 +64,20 @@ public class AndroidVersionsAdapter extends BaseAdapter {
 
             holder = new ViewHolder();
             holder.imageIV = (ImageView) convertView.findViewById(R.id.id_image);
+            holder.titleTV = (TextView) convertView.findViewById(R.id.id_title);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
         holder.imageIV.setImageResource(androidVersionResourceIds[position]);
+        holder.imageIV.setContentDescription("Image for " + androidVersionNames[position]);
+        holder.titleTV.setText(androidVersionNames[position]);
         return convertView;
     }
 
     private static class ViewHolder {
         ImageView imageIV;
+        TextView titleTV;
     }
 }
